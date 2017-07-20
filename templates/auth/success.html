@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sucesssfully Logged In</title>
+    {% if redirect %}
+    <meta http-equiv="refresh" content="3,url={{redirect}}">
+    {% endif %}
+  </head>
+  <body>
+    <h1>Successfully logged in to {{user.email}}</h1>
+    {% if redirect %}
+    <a href="{{redirect}}">Redirecting click here if you don't want to wait.</a>
+    {% endif %}
+  </body>
+</html>
