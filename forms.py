@@ -9,8 +9,8 @@ valid_password = re.compile(
     r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
 )
 class LoginForm(forms.Form):
-    email= forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    email= forms.EmailField(widget=forms.TextInput(attrs={'class': 'mdl-textfield__input'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}))
 
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()
@@ -25,12 +25,15 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Username or Password is incorrect')
 
 class RegistrationForm(ModelForm):
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}))
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'password']
         widgets = {
-            'password': forms.PasswordInput(),
+            'first_name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
+            'last_name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
+            'email': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
+            'password': forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}),
         }
 
     def clean(self):

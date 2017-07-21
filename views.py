@@ -13,6 +13,10 @@ def register(request):
             form.save()
             messages.success(request, 'Successfully registered please log in')
             return redirect(reverse('auth:login'))
+        elif 'err_back' in request.session:
+            request.session['reg_form_err'] = request.POST
+            return redirect(request.session['err_back'])
+
     context = {
         'form': form
     }
@@ -27,6 +31,9 @@ def login(request):
             request.session['user'] = {'first_name': user.first_name, 'last_name': user.last_name, 'email': user.email, 'id': user.id}
             print('logged in')
             return redirect(reverse('auth:success'))
+        elif 'err_back' in request.session:
+            request.session['login_form_err'] = request.POST
+            return redirect(request.session['err_back'])
     return render(request, 'auth/login.html', {'form': form})
 
 def logout(request):

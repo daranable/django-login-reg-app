@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Login</title>
-  </head>
-  <body>
-    {% if messages %}
-    <ul class="essages">
-    {% for message in messages %}
-    <li class="{{message.tags}}">{{message}}</li>
-    {% endfor %}
-    </div>
-    {% endif %}
-    <form method="post">
-      {% csrf_token %}
-      {{form.as_p}}
-      <button type="submit" name="button">Login</button>
-    </form>
-  </body>
-</html>
+{% extends 'layout.html' %}
+{% block title %}Login{% endblock %}
+{% block header %}Login{% endblock %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{message.tags}}">{{message}}</li>
+  {% endfor %}
+</div>
+{% endif %}
+<form method="post">
+  {% csrf_token %}
+  {% include 'auth/form.html' %}
+  <button type="submit" name="button">Login</button>
+</form>
+{% endblock %}
