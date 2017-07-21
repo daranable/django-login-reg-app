@@ -31,7 +31,7 @@ def login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = User.objects.get(email=form.cleaned_data.get('email'))
-            request.session['user'] = {'first_name': user.first_name, 'last_name': user.last_name, 'email': user.email, 'id': user.id}
+            request.session['user'] = {'name': user.name, 'email': user.email, 'id': user.id}
             return redirect(reverse('auth:success'))
         elif 'err_back' in request.session:
             request.session['login_form_err'] = request.POST

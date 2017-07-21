@@ -28,10 +28,9 @@ class RegistrationForm(ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}))
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password']
+        fields = ['name', 'email', 'password']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
-            'last_name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
+            'name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}, label='name'),
             'email': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
             'password': forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}),
         }
@@ -40,13 +39,10 @@ class RegistrationForm(ModelForm):
         cleaned_data = super(RegistrationForm, self).clean()
         password = cleaned_data.get('password')
         conf_password = cleaned_data.get('confirm_password')
-        first = cleaned_data.get('first_name')
-        last = cleaned_data.get('last_name')
+        cname = cleaned_data.get('name')
 
-        if len(first) < 2:
-            self.add_error('first_name', 'Name must be longer than 1 character')
-        if len(last) < 2:
-            self.add_error('last_name', 'Name must be longer than 1 character')
+        if len(cname) < 2:
+            self.add_error('name', 'Name must be longer than 1 character')
         if password != conf_password:
             self.add_error('password', 'Password fields must match')
             self.add_error('confirm_password', 'Password fields must match')
