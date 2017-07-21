@@ -14,9 +14,9 @@ select {
   width: 100%;
   padding: 4px 0;
   font-size: 16px;
-  color: rgba(0,0,0, 0.26);
+  color: rgb(63,81,181);
   border: none;
-  border-bottom: 1px solid rgba(0,0,0, 0.12);
+  border-bottom: 1px solid rgb(63,81,181);
 }
 
 /* Remove focus */
@@ -54,6 +54,6 @@ select:focus {
   content: '';
   border-left: .25em solid transparent;
   border-right: .25em solid transparent;
-  border-top: 0.375em solid rgba(0,0,0, 0.12);
+  border-top: 0.375em solid rgb(63,81,181);
   pointer-events: none;
 }
