@@ -30,7 +30,7 @@ class RegistrationForm(ModelForm):
         model = User
         fields = ['name', 'email', 'password']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}, label='name'),
+            'name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
             'email': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
             'password': forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}),
         }
