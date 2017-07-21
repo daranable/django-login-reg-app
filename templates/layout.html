@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css" />
     <link rel="stylesheet" href="{% static 'auth/css/mdl.css' %}">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout">
+      <div id='messages' class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+      </div>
       <header class="mdl-layout__header mdl-layout__header--scroll">
         <div class="mdl-layout__header-row">
           <!-- Title -->
@@ -30,5 +33,28 @@
         <div class="page-content">{% block content %}Hello, World!{% endblock %}</div>
       </main>
     </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer type="text/javascript">
+      setTimeout(function() {
+        'use strict';
+        let snackbarContainer = document.getElementById('messages');
+        let messages = [
+          {% if messages %}
+          {% for message in messages %}
+          '{{message.message}}',
+          {% endfor %}
+          {% endif %}
+        ];
+
+        if (messages.length) {
+          for (let message of messages) {
+            snackbarContainer.MaterialSnackbar.showSnackbar({
+              message: message,
+              timeout: 2000,
+            });
+          }
+        }
+      },200);
+    </script>
   </body>
 </html>
