@@ -38,6 +38,9 @@ select:focus {
 
 .mdl-selectfield {
   font-family: 'Roboto','Helvetica','Arial',sans-serif;
+  display: inline-block;
+  width: 300px;
+  max-width: 100%;
   position: relative;
 }
 .mdl-selectfield:after {
