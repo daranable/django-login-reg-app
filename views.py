@@ -42,6 +42,8 @@ def logout(request):
     if 'user' in request.session:
         del request.session['user']
         messages.success(request, 'Successfully logged out.')
+    if 'logout_redirect' in request.session:
+        return redirect(request.session['logout_redirect'])
     return redirect(reverse('auth:login'))
 
 def success(request):
