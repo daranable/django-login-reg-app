@@ -28,11 +28,15 @@ class RegistrationForm(ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}))
     class Meta:
         model = User
-        fields = ['name', 'email', 'password']
+        fields = ['name', 'email', 'birthday', 'password']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
             'email': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
+            'birthday': forms.TextInput(attrs={'class': 'mdl-textfield__input'}),
             'password': forms.PasswordInput(attrs={'class': 'mdl-textfield__input'}),
+        }
+        labels = {
+            'birthday': 'Birthday (month/day/year)',
         }
 
     def clean(self):
